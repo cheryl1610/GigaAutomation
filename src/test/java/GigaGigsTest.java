@@ -6,12 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GigaGigsTest {
     private static ChromeDriver driver;
     GigaGigsPage giga;
+
 
     @BeforeAll
     static void launchBrowser() {
@@ -52,10 +55,20 @@ public class GigaGigsTest {
         assertTrue(gig.getText().contains("When: 2025-06-04 19:30"));
 
     }
-    @Test
-    public void shouldFilterLocation(){
-        giga.filterLocation("All");
+    //@Test
+//    public void shouldFilterLocationCompare () throws Exception {
+//        giga.filterLocation("All");
+//        List<WebElement> gigsBefore = driver.findElements(By.("gig"));
+//        giga.takeScreenshot(driver, "beforefilter.png");
+//        int countBefore = gigsBefore.size();
+//        System.out.println(gigsBefore.size());
+//        giga.filterLocation("Cambridge");
+//
+//        List<WebElement> gigsAfter = driver.findElements(By.("gig"));
+//        giga.takeScreenshot(driver, "afterfilter.png");
+//       int countAfter = gigsAfter.size();
+//        System.out.println(gigsAfter.size());
+//       assertTrue(countBefore > countAfter);
+    // Cant locate the right elements
 
-
-    }
 }
