@@ -63,7 +63,7 @@ public class GigaAccountTest {
         WebElement username = driver.findElement(By.id("username"));
         username.sendKeys("username");
         WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("password!");
+        password.sendKeys("fred");
         WebElement logInButton = driver.findElement(By.cssSelector("input[type='submit'][value='Log in']"));
         logInButton.click();
         String failLogIn = driver.getTitle();
@@ -71,6 +71,55 @@ public class GigaAccountTest {
     }
 
 
+    @Test
+    public void loginNonExistentUser () {
 
+        WebElement logIn = driver.findElement(By.linkText("Log In"));
+        logIn.click();
+        WebElement username = driver.findElement(By.id("username"));
+        username.sendKeys("cheryl");
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("fred");
+        WebElement logInButton = driver.findElement(By.cssSelector("input[type='submit'][value='Log in']"));
+        logInButton.click();
+        String failLogIn = driver.getTitle();
+        assertEquals("401 Unauthorised", failLogIn);
+    }
+    @Test
+    public void signupValid () {
 
+        WebElement logIn = driver.findElement(By.linkText("Log In"));
+        logIn.click();
+        WebElement signUp = driver.findElement((By.linkText("Sign Up")));
+        signUp.click();
+        WebElement username = driver.findElement(By.cssSelector("#username"));
+        username.sendKeys("username123");
+        WebElement password = driver.findElement(By.cssSelector("#password"));
+        password.sendKeys("password!");
+        WebElement confirmPassword = driver.findElement(By.cssSelector("#confirm_password"));
+        confirmPassword.sendKeys("password!");
+        WebElement signUpButton = driver.findElement(By.cssSelector("input[type='submit'][value='Sign up']"));
+        signUpButton.click();
+        String LogIn = driver.getTitle();
+        assertEquals("Log In",LogIn);
+    }
+    @Test
+    public void signupInValidPassComplex () throws Exception {
+
+        WebElement logIn = driver.findElement(By.linkText("Log In"));
+        logIn.click();
+        WebElement signUp = driver.findElement((By.linkText("Sign Up")));
+        signUp.click();
+        WebElement username = driver.findElement(By.cssSelector("#username"));
+        username.sendKeys("username123");
+        WebElement password = driver.findElement(By.cssSelector("#password"));
+        password.sendKeys("pass");
+        WebElement confirmPassword = driver.findElement(By.cssSelector("#confirm_password"));
+        confirmPassword.sendKeys("pass");
+        WebElement signUpButton = driver.findElement(By.cssSelector("input[type='submit'][value='Sign up']"));
+        signUpButton.click();
+        GigaGigsPage.takeScreenshot (driver, "signPage.png");
+        String failLogIn = driver.getTitle();
+        assertEquals("Sign Up", failLogIn);
+    }
 }
