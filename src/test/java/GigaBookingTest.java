@@ -32,4 +32,22 @@ public class GigaBookingTest {
         giga = new GigaGigsPage(driver);
         giga.navigate();
     }
+    @Test
+    public void ShouldGoToBookingPage() throws Exception {
+        WebElement detail = driver.findElement(By.cssSelector("a[href='/gigs/1']"));
+        detail.click();
+        giga.takeScreenshot (driver, "afterclick.png");
+        String gigPage = driver.getCurrentUrl();
+        assertTrue(gigPage.startsWith("http://localhost:5001/gigs/"));
+    }
+    @Test
+    public void loggedOutUserViewBooking() throws Exception {
+        WebElement account = driver.findElement(By.linkText("Account"));
+        account.click();
+        giga.takeScreenshot (driver, "accountPage.png");
+        String accountPage = driver.getTitle();
+        assertEquals("401 Unauthorised",accountPage);
+    }
+
+
 }

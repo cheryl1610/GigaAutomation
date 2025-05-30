@@ -17,4 +17,15 @@ public class GigaBookingPage {
     public void navigate() {
         driver.get("http://localhost:5001/gigs");
     }
+
+    public void clickMoreDetails(){
+        WebElement moreDeatils = driver.findElement(By.className("details-booking"));
+        WebElement moreDeatils1 = moreDeatils;
+        moreDeatils1.click();
+
+    }
+    public void bookNowButton(){
+        WebElement bookNow = driver.findElement(By.cssSelector("input[value='Book gig']"));
+        bookNow.isDisplayed();
+    }
 }
